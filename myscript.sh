@@ -2,7 +2,9 @@
 #create a list of sample IDs
 samples="SRR4064356 SRR4064352 SRR4064357 SRR4064353 SRR4064358 SRR4064354"
 
+
 #create a directory to save the data # 1
+
 mkdir data
 
 # iterate over the list of samples and download 10000 reads
@@ -29,11 +31,10 @@ mkdir fastp_results
 # iterate over the list of samples and run fastp to improve the results
 for sample in $samples; do
     # run the fastp command
+
     ~/fastp --in1 data/$sample\_1.fastq --in2 data/$sample\_2.fastq --out1 fastp_results/$sample\_1.fastp.fastq --out2 fastp_results/$sample\_2.fastp.fastq --unpaired1 fastp_results/$sample\_1.unpaired.fastq --unpaired2 fastp_results/$sample\_2.unpaired.fastq --average_qual 30 --trim_front1 15 --trim_tail1 1 --length_required 60
 done
 
-
-# create a directory to save the data # 4
 mkdir fastqc_better_results
 
 # iterate over the list of samples and run fastqc to evaluate
@@ -43,6 +44,7 @@ for sample in $samples; do
 	fastqc fastp_results/$sample\_2.fastp.fastq -o fastqc_better_results
 
 done
+
 
 samples="2 3 4 6 7 8"
 
